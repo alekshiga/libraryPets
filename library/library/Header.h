@@ -5,41 +5,39 @@
 struct Animal {
 	std::string name;
 	int weight;
-};
+} AnimalExample;
 
 struct House {
-	std::string street;
-	int houseNumber;
+	std::string adress;
 	std::string phoneNumber;
-};
+} HouseExample;
 
-struct petOwner {
+struct Owner {
 	std::string name;
-	struct birthDate {
-		int day;
-		int month;
-		int year;
-	} d;
-};
+	std::string birthDate;
+} OwnerExample;
 
 struct Pet {
 	struct Animal Animal;
-	struct House Home;
-	struct petOwner Owner;
+	struct House House;
+	struct Owner Owner;
 };
 
-std::string PetFound(std::string name, std::vector<struct Pet> list) {
-	for (const auto& Pet : list) {
-		if (Pet.Animal.name == (name + "\n")) return "Номер хозяина: " + Pet.Home.phoneNumber;
+std::string PetFound(std::string name, std::vector<Pet> list) {
+	for (const auto& pet : list) {
+		if (pet.Animal.name == (name + "\n")) return "Номер хозяина: " + pet.House.phoneNumber;
 	}
 	return "В списке нет питомца с такой кличкой";
 }
 
-void printInfo(std::vector<Pet> list) {
-	for (auto& pet : list) {
-		std::cout << "\nИнформация о питомце" << std::endl;
+void printInfo(std::vector<Pet> pets) {
+	std::cout << "Информация о питомцах\n-----------------------------------------------------" << std::endl;
+	for (auto & pet : pets) {
 		std::cout << "Кличка: " << pet.Animal.name;
 		std::cout << "Хозяин: " << pet.Owner.name;
-		std::cout << "Номер для связи: " << pet.Home.phoneNumber << std::endl;
+		std::cout << "Номер хозяина: " << pet.House.phoneNumber;
+		std::cout << "Адрес: " << pet.House.adress;
+		std::cout << "------------------------------------------------------\n";
 	}
 }
+

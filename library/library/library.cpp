@@ -3,6 +3,19 @@
 #include "Header.h"
 #include <windows.h>
 
+std::vector<Pet> Pets;
+std::vector<Owner> Owners;
+std::vector<House> Houses;
+std::vector<Animal> Animals;
+
+void appendPetsInfo(Owner petOwner, Animal animal, House house) {
+    Pet bufferPet;
+    bufferPet.Animal = animal;
+    bufferPet.House = house;
+    bufferPet.Owner = petOwner;
+    Pets.push_back(bufferPet);
+}
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -15,26 +28,16 @@ int main()
         char* str = (char*)calloc(50, sizeof(char));
         fgets(str, 50, file);
         int count = int(*str) - 48;
-        std::vector<petOwner> Owners;
-        std::vector<House> Houses;
-        std::vector<Animal> Animals;
-        std::vector<Pet> Pets;
         for (int i = 0; i < count; ++i) {
-            petOwner BufferPerson;
+            Owner BufferPerson;
             fgets(str, 50, file);
             BufferPerson.name = str;
             fgets(str, 50, file);
-            BufferPerson.d.day = atoi(str);
-            fgets(str, 50, file);
-            BufferPerson.d.month = atoi(str);
-            fgets(str, 50, file);
-            BufferPerson.d.year = atoi(str);
+            BufferPerson.birthDate = str;
             Owners.push_back(BufferPerson);
             House BufferHome;
             fgets(str, 50, file);
-            BufferHome.street = str;
-            fgets(str, 50, file);
-            BufferHome.houseNumber = atoi(str);
+            BufferHome.adress = str;
             fgets(str, 50, file);
             BufferHome.phoneNumber = str;
             Houses.push_back(BufferHome);
@@ -44,16 +47,12 @@ int main()
             fgets(str, 50, file);
             BufferAnimal.weight = atoi(str);
             Animals.push_back(BufferAnimal);
-            Pet bufferPet;
-            bufferPet.Animal = BufferAnimal;
-            bufferPet.Home = BufferHome;
-            bufferPet.Owner = BufferPerson;
-            Pets.push_back(bufferPet);
+            appendPetsInfo(BufferPerson, BufferAnimal, BufferHome);
         }
-        printInfo(Pets);
+        printInfo(Pets);        // функция выводит общую информацию о всех питомцах
         std::string search;
-        std::cout << "Введите кличку животного, чтобы узнать номер его хозяина" << std::endl;
+        std::cout << "\nВведите кличку животного, чтобы узнать номер его хозяина" << std::endl;
         std::cin >> search;
-        std::cout << PetFound(search, Pets) << std::endl;
+        std::cout << PetFound(search, Pets) << std::endl;   // функция позволяет по кличке узнать номер телефона хозяина(вдруг питомец потерялся и был найден кем-то)
     }
 }
