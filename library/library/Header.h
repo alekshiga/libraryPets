@@ -8,10 +8,11 @@ private:
 	std::string weight;
 public:
 	Animal() = default;
-	Animal(std::string setName, std::string setWeight) {	//конструктор со всеми аргументами
+	Animal(std::string setName, std::string setWeight) {	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕ РІСЃРµРјРё Р°СЂРіСѓРјРµРЅС‚Р°РјРё
 		name = setName;
 		weight = setWeight;
 	}
+	~Animal();
 	
 	std::string getWeight() const {
 		return weight;
@@ -31,11 +32,12 @@ private:
 	std::string adress;
 	std::string phoneNumber;
 public:
-	House() = default;             // конструктор по умолчанию
-	House(std::string setAdress, std::string setPhoneNumber) {	//конструктор со всеми аргументами
+	House() = default;             // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	House(std::string setAdress, std::string setPhoneNumber) {	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕ РІСЃРµРјРё Р°СЂРіСѓРјРµРЅС‚Р°РјРё
 		adress = setAdress;
 		phoneNumber = setPhoneNumber;
 	}
+	~House();
 
 	std::string getPhoneNumber() const {
 		return phoneNumber;
@@ -59,11 +61,12 @@ private:
 	std::string name;
 	std::string birthday;
 public:
-	Owner() = default;            // конструктор по умолчанию
-	Owner(std::string setName, std::string setBirthday) {	//конструктор со всеми аргументами
+	Owner() = default;            // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	Owner(std::string setName, std::string setBirthday) {	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕ РІСЃРµРјРё Р°СЂРіСѓРјРµРЅС‚Р°РјРё
 		name = setName;
 		birthday = setBirthday;
 	}
+	~Owner();
 
 	std::string getName() const {
 		return name;
@@ -82,27 +85,27 @@ private:
 	class House HouseInPet;
 	class Owner OwnerInPet;
 public:
-	Pet() = default;            // конструктор по умолчанию
+	Pet() = default;            // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-	Pet(Animal setAnimal, House setHouse, Owner setOwner) {      //конструктор со всеми аргументами
+	Pet(Animal setAnimal, House setHouse, Owner setOwner) {      //РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕ РІСЃРµРјРё Р°СЂРіСѓРјРµРЅС‚Р°РјРё
 		AnimalInPet = setAnimal;
 		HouseInPet = setHouse;
 		OwnerInPet = setOwner;
 	}
+	~Pet();
 
 	void givePetsInfo() {
-		std::cout << "\nКличка: " << AnimalInPet.getName();
-		std::cout << "Имя хозяина: " << OwnerInPet.getName();
-		std::cout << "Номер телефона: " << HouseInPet.getPhoneNumber() << std::endl;
+		std::cout << "\nРљР»РёС‡РєР°: " << AnimalInPet.getName();
+		std::cout << "РРјСЏ С…РѕР·СЏРёРЅР°: " << OwnerInPet.getName();
+		std::cout << "РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°: " << HouseInPet.getPhoneNumber() << std::endl;
 		std::cout << "------------------------------------------------------------\n";
 	}
 
 	Pet changePetOwner(Pet* changingPet, Owner newOwner) {
-		std::cout << "\nКличка: " << (*changingPet).AnimalInPet.getName();
-		std::cout << "Прежний хозяин: " << (*changingPet).OwnerInPet.getName();
+		std::cout << "\nРљР»РёС‡РєР°: " << (*changingPet).AnimalInPet.getName();
+		std::cout << "РџСЂРµР¶РЅРёР№ С…РѕР·СЏРёРЅ: " << (*changingPet).OwnerInPet.getName();
 		(*changingPet).OwnerInPet = newOwner;
-		std::cout << "Новый хозяин: " << newOwner.getName() << std::endl;
+		std::cout << "РќРѕРІС‹Р№ С…РѕР·СЏРёРЅ: " << newOwner.getName() << std::endl;
 		return *changingPet;
 	}
 };
-
