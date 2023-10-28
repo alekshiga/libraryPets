@@ -1,2 +1,2 @@
 ﻿  main.cpp
-C:\Users\User\source\repos\library\classes\Animal.h(26): error C4716: Animal::toString: должна возвращать значение
+  library.vcxproj -> C:\Users\User\source\repos\library\x64\Debug\library.exe

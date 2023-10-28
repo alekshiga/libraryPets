@@ -3,25 +3,25 @@ class Owner {
 private:
 	std::string name;
 	std::string birthday;
-	std::string responsibilityDegree;
+	int responsibilityDegree;
 public:
 	Owner() = default;            // конструктор по умолчанию
-	Owner(std::string setName, std::string setBirthday, std::string setResponsibilityDegree) {	//конструктор со всеми аргументами
+	Owner(std::string setName, std::string setBirthday, int setResponsibilityDegree) {	//конструктор со всеми аргументами
 		name = setName;
 		responsibilityDegree = setResponsibilityDegree;
 		birthday = setBirthday;
 	}
 	Owner createOwner() {
-		std::string nameStorage;
+		std::string name;
 		std::cout << "Введите ФИО: " << std::endl;
-		std::cin >> nameStorage;
-		std::string birthdayStorage;
+		std::cin >> name;
+		std::string birthday;
 		std::cout << "Укажите дату рождения: " << std::endl;
-		std::cin >> birthdayStorage;
-		std::string degreeStorage;
+		std::cin >> birthday;
+		int degree;
 		std::cout << "Укажите степень ответственности хозяина: " << std::endl;
-		std::cin >> degreeStorage;
-		Owner newOwner(nameStorage, birthdayStorage, degreeStorage);
+		std::cin >> degree;
+		Owner newOwner(name, birthday, degree);
 		return newOwner;
 	}
 	std::string getName() const {
@@ -32,14 +32,14 @@ public:
 		return birthday;
 	}
 
-	std::string getResponsibilityDegree() const {
+	int getResponsibilityDegree() const {
 		return responsibilityDegree;
 	}
 
 	void toString() const {
-		std::cout << "ФИО: " << name;
-		std::cout << "Дата рождения: " << birthday;
-		std::cout << "Степень ответственности: " << responsibilityDegree;
+		std::cout << "ФИО: " << name << std::endl;
+		std::cout << "Дата рождения: " << birthday << std::endl;
+		std::cout << "Степень ответственности: " << responsibilityDegree << std::endl;
 		std::cout << "--------------------------------------\n";
 	}
 };

@@ -6,20 +6,17 @@
 #pragma once
 class Residence {
 private:
-	class House whereLiving;
+	class House* whereLiving;
 	class Owner whoLiving;
 public:
-	Residence() = default;
-	Residence(House setWhereLiving, Owner setWhoLiving) {
-		whereLiving = setWhereLiving;
+	Residence() { };
+
+	Residence(House* setWhereLiving, Owner setWhoLiving) {
+		*whereLiving = *setWhereLiving;
 		whoLiving = setWhoLiving;
 	}
 
-	std::string getOwnerNameFromResidence() const {
-		return whoLiving.getName();
-	}
-
-	House getHouseFromResidence() const {
+	House* getHouseFromResidence() const {
 		return whereLiving;
 	}
 

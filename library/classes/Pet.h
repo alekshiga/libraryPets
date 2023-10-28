@@ -7,33 +7,22 @@
 #pragma once
 class Pet {
 private:
-	class Animal animal;
-	class House house;
-	class Owner owner;
+	class Animal* animal;
+	class Residence residence;
 public:
-	Pet() = default;            // конструктор по умолчанию
-
-	Pet(Animal Animal, House House, Owner Owner) {      //конструктор со всеми аргументами
-		animal = Animal;
-		house = House;
-		owner = Owner;
+	Pet(Animal* Animal, Residence Residence) {
+		*animal = *Animal;
+		residence = Residence;
 	}
 
-	void givePetInfo() {
-		std::cout << "\nКличка: " << animal.getName();
-		std::cout << "Имя хозяина: " << owner.getName();
-		std::cout << "Номер телефона: " << house.getPhoneNumber() << std::endl;
+	void toString() {
+		std::cout << "\nКличка: " << (*animal).getName() << std::endl;
+		std::cout << "Имя хозяина: " << residence.getOwnerFromResidence().getName();
+		std::cout << "Номер телефона: " << residence.getHouseFromResidence()->getPhoneNumber() << std::endl;
 		std::cout << "--------------------------------\n";
 	}
 
-	void changePetOwner(Pet* changingPet, Owner newOwner) {
-		std::cout << "\nКличка: " << (*changingPet).animal.getName();
-		std::cout << "Прежний хозяин: " << (*changingPet).owner.getName();
-		(*changingPet).owner = newOwner;
-		std::cout << "Новый хозяин: " << newOwner.getName() << std::endl;
-	}
-
-	Animal getAnimal() {
-		return this->animal;
+	Animal* getAnimal() {
+		return animal;
 	}
 };
