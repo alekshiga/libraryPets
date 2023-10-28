@@ -1,5 +1,2 @@
-﻿  library.cpp
-C:\Users\User\source\repos\library\library\library.cpp(15,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\User\source\repos\library\library\library.cpp(16,47): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\User\source\repos\library\library\library.cpp(17,47): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-  library.vcxproj -> C:\Users\User\source\repos\library\x64\Debug\library.exe
+﻿  main.cpp
+C:\Users\User\source\repos\library\classes\Animal.h(26): error C4716: Animal::toString: должна возвращать значение
