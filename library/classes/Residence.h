@@ -9,7 +9,6 @@ private:
 	class House* whereLiving;
 	class Owner whoLiving;
 public:
-	Residence() { };
 
 	Residence(House* setWhereLiving, Owner setWhoLiving) {
 		*whereLiving = *setWhereLiving;

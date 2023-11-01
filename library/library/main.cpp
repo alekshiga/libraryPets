@@ -54,13 +54,18 @@ int main()
     owner2.toString();
 
     Residence residence2 = Residence(ptrflat2, owner2);
-    Pet pet2 = Pet(ptrcat2, residence2);
+    Pet pet2 = Pet(ptrcat2, owners[0], ptrflat2);
 
     Flat flat1 = createFlat();
     Dog dog1 = createDog();
     Cat cat1 = createCat();
+
+    Flat* ptrflat1 = &flat1;
+    Cat* ptrcat1 = &cat1;
+    Dog* ptrdog1 = &dog1;
+
     Residence residence1 = Residence(&flat1, owners[0]);
-    Pet pet1 = Pet(&dog1, residence1);
+    Pet pet1 = Pet(ptrdog1, owner2, ptrflat1);
 
     pets.push_back(pet1);
     pets.push_back(pet2);

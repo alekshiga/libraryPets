@@ -7,18 +7,18 @@
 #pragma once
 class Pet {
 private:
-	class Animal* animal;
-	class Residence residence;
+	Animal* animal;
+	House* house;
+	Owner owner;
 public:
-	Pet(Animal* Animal, Residence Residence) {
-		*animal = *Animal;
-		residence = Residence;
-	}
+	Pet(Animal* animal, Owner owner, House* house)
+		: animal(animal), house(house), owner(owner)
+	{}
 
 	void toString() {
 		std::cout << "\nКличка: " << (*animal).getName() << std::endl;
-		std::cout << "Имя хозяина: " << residence.getOwnerFromResidence().getName();
-		std::cout << "Номер телефона: " << residence.getHouseFromResidence()->getPhoneNumber() << std::endl;
+		std::cout << "Имя хозяина: " << owner.getName();
+		std::cout << "Номер телефона: " << (*house).getPhoneNumber() << std::endl;
 		std::cout << "--------------------------------\n";
 	}
 
