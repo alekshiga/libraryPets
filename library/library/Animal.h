@@ -21,7 +21,7 @@ public:
 	}
 
 	friend std::string toString(const Animal animal) {
-		return "Кличка: " + animal.getName() + "Вид: " + animal.getKind() + "Пол: " + animal.getSex() + "Возраст: " + std::to_string(animal.getAge()) + "\n--------------------------------------\n";
+		return "Кличка: " + animal.name + "Вид: " + animal.kind + "Пол: " + animal.sex + "Возраст: " + std::to_string(animal.age) + "\n--------------------------------------\n";
 	}
 
 	int getAge() const {
