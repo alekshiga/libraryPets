@@ -8,6 +8,11 @@ class House {
 		std::string adress;
 		std::string phoneNumber;
 		int howManyKidsLiving;
+
+		friend std::string toString(const House house) {
+			return "Адрес: " + house.getAdress() + "Номер телефона: " + house.getPhoneNumber() + "Детей живет в этом доме: " + std::to_string(house.getKidsInfo()) + "\n--------------------------------------\n";
+		}
+
 	public:
 		House() {}
 
@@ -15,10 +20,6 @@ class House {
 			this->adress = adress;
 			this->phoneNumber = phoneNumber;
 			this->howManyKidsLiving = howManyKidsLiving;
-		}
-
-		friend std::string toString(const House house) {
-			return "Адрес: " + house.getAdress() + "Номер телефона: " + house.getPhoneNumber() + "Детей живет в этом доме: " + std::to_string(house.getKidsInfo()) + "\n--------------------------------------\n";
 		}
 
 		std::string getPhoneNumber() const {

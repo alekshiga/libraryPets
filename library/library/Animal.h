@@ -10,6 +10,10 @@ private:
 	std::string kind;
 	std::string sex;
 
+	friend std::string toString(const Animal animal) {
+		return "Кличка: " + animal.name + "Вид: " + animal.kind + "Пол: " + animal.sex + "Возраст: " + std::to_string(animal.age) + "\n--------------------------------------\n";
+	}
+
 public:
 	Animal() {}
 
@@ -18,10 +22,6 @@ public:
 		this->age = age;
 		this->kind = kind;
 		this->sex = sex;
-	}
-
-	friend std::string toString(const Animal animal) {
-		return "Кличка: " + animal.name + "Вид: " + animal.kind + "Пол: " + animal.sex + "Возраст: " + std::to_string(animal.age) + "\n--------------------------------------\n";
 	}
 
 	int getAge() const {

@@ -8,6 +8,11 @@ class Owner {
 		std::string name;
 		std::string birthday;
 		int responsibilityDegree;
+
+		friend std::string toString(const Owner owner) {
+			return "Имя: " + owner.getName() + "Дата рождения: " + owner.getBirthday() + "Степень ответственности: " + std::to_string(owner.getResponsibilityDegree()) + "\n--------------------------------------\n";
+		}
+
 	public:
 		Owner() {}
 
@@ -15,10 +20,6 @@ class Owner {
 			this->name = name;
 			this->responsibilityDegree = responsibilityDegree;
 			this->birthday = birthday;
-		}
-
-		friend std::string toString(const Owner owner) {
-			return "Имя: " + owner.getName() + "Дата рождения: " + owner.getBirthday() + "Степень ответственности: " + std::to_string(owner.getResponsibilityDegree()) + "\n--------------------------------------\n";
 		}
 		
 		std::string getName() const {

@@ -19,7 +19,9 @@ static std::vector<Pet> pets;
 
 static void petsToString() {
     for (auto pet : pets) {
-        std::cout << pet.getAnimal().toString();
+        std::cout << std::endl;
+        std::cout << toString(pet.getAnimal());
+        std::cout << toString(pet.getResidence().getOwnerFromResidence()) << std::endl;
     }
 }
 
@@ -156,6 +158,8 @@ int main()
     pets.push_back(firstpet);
     pets.push_back(secondpet);
     pets.push_back(thirdpet);
+
+    petsToString();
 
     pets[0].changeOwner(&pets[1], residences[1]);
     pets[1].changeOwner(&pets[2], residences[2]);
