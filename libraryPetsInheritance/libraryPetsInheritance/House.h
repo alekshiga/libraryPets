@@ -4,7 +4,7 @@
 #include <iostream>
 
 class House {
-protected:
+public:
 	std::string adress;
 	std::string phoneNumber;
 	int howManyKidsLiving;
@@ -15,8 +15,6 @@ protected:
 			"Kids living: " + std::to_string(house.howManyKidsLiving) +
 			"\n--------------------------------------\n";
 	}
-
-public:
 	House() = default;
 
 	House(std::string adress, std::string phoneNumber, int howManyKidsLiving) {
@@ -65,12 +63,12 @@ House* createHouse() {
 
 class Flat : public House {
 
-private:
+protected:
 	int flatNumber;
 	bool areNeighborsAngry;
 
 public:
-	Flat(std::string adress, int flatNumber, std::string phoneNumber, int howManyKidsLiving, bool areNeighborsAngry) {
+		Flat(std::string adress, int flatNumber, std::string phoneNumber, int howManyKidsLiving, bool areNeighborsAngry) {
 		this->adress = adress;
 		this->flatNumber = flatNumber;
 		this->phoneNumber = phoneNumber;
@@ -99,6 +97,17 @@ public:
 		}
 		result += "--------------------------------------\n";
 		return result;
+	}
+
+	Flat& operator=(House& other) {
+		if (this != &other) {
+			this->adress = other.adress;
+			this->howManyKidsLiving = other.howManyKidsLiving;
+			this->phoneNumber = phoneNumber;
+			this->areNeighborsAngry = false;
+			this->flatNumber = 0;
+		}
+		return *this;
 	}
 };
 
