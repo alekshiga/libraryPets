@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <conio.h>
 #include <stdexcept>
+#include <concepts>
 #include "Animal.h"
 #include "Owner.h"
 #include "House.h"
@@ -54,6 +55,16 @@ static void push_pet(Pet pet) {
     petQuantity++;
 }
 
+template <typename T>
+concept HasToString = requires(T t) {
+    { t.toString() } -> std::convertible_to<std::string>;
+};
+
+template <HasToString T>
+void stringPrint(const T& t) {
+    std::cout << t.toString() << std::endl;
+}
+
 int main() {
     try {
         if (owners.size() == 0) {
@@ -69,7 +80,7 @@ int main() {
 
     Animal* vasya = new Cat("Vasya", "m", 5);
     Owner artem = Owner("Silyanov S.E.", "08.08.2004", 2);
-    House* artemHouse = new House("Myatnaya 48", "+79831778095", 0);
+    House* house = new House("Myatnaya 48", "+79831778095", 0);
 
     Animal* bobik = createDog();
     Owner anton = createOwner();
@@ -77,9 +88,7 @@ int main() {
 
     animals.push_back(vasya);
 
-    Flat* mama = &artemHouse;
-
-    Residence res(artemHouse, artem);
+    Residence res(house, artem);
     Residence res1(antonFlat, anton);
     Pet pet1(bobik, res1);
     Pet pet(vasya, res);
@@ -87,9 +96,12 @@ int main() {
     push_pet(pet1);
     
     createTable(petQuantity, pets);
-    
     showTable();
+    std::cout << std::endl;
 
+    stringPrint(artem);
+    stringPrint(*vasya);
+
+    delete bobik;
     delete vasya;
-    
 }
