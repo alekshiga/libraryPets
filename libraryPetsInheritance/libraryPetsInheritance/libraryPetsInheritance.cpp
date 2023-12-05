@@ -1,6 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <windows.h>
+#include <vector>
 #include <algorithm>
 #include <conio.h>
 #include <stdexcept>
@@ -16,6 +17,30 @@ using namespace std;
 static int petQuantity = 0;
 
 static std::vector<std::vector<std::string>> table;
+
+static std::vector<Owner> owners;
+static std::vector<Animal*> animals;
+static std::vector<House*> houses;
+static std::vector<Residence> residences;
+static std::vector<Pet> pets;
+
+std::string searchByName() {
+    bool f;
+    std::string name;
+    std::string birthday;
+    std::cout << "Enter name: ";
+    std::cin >> name;
+    for (int i = 0; i < owners.size(); ++i) {
+        if (owners[i].getName() == name) {
+            return name + ", " + owners[i].getBirthday() + ", " + std::to_string(owners[i].getResponsibilityDegree()) + "\n\n";
+        }
+    }
+    return "Owner not found\n\n";
+}
+
+static bool compareByName(const Animal* a, const Animal* b) {
+    return a->getName() < b->getName();
+}
 
 void createTable(int petQuantity, std::vector<Pet> pets) {
     if (table.capacity() < pets.size()) table.resize(petQuantity);
@@ -36,12 +61,6 @@ void showTable() {
         std::cout << std::endl;
     }
 }
-
-static std::vector<Owner> owners;
-static std::vector<Animal*> animals;
-static std::vector<House*> houses;
-static std::vector<Residence> residences;
-static std::vector<Pet> pets;
 
 static void petsToString() {
     for (auto pet : pets) {
@@ -78,19 +97,35 @@ int main() {
         std::cout << "Dividing by zero\n" << e.what() << std::endl;
     }
 
-    Animal* vasya = new Cat("Vasya", "m", 5);
-    Owner artem = Owner("Silyanov S.E.", "08.08.2004", 2);
+    Animal* vasya = new Cat("Vasiliy", "m", 5);
+    Animal* kozel = new Cat("Kozel", "m", 2);
+    Animal* mittens = new Cat("Mittens", "m", 2);
+    Owner sergey = Owner("Silyanov", "08.08.2004", 2);
+    Owner timofey = Owner("Tagaev", "10.12.2004", 1);
+    Owner vladimir = Owner("Ruppel", "04.02.2000", 0);
+    owners.push_back(sergey);
+    owners.push_back(timofey);
+    owners.push_back(vladimir);
     House* house = new House("Myatnaya 48", "+79831778095", 0);
-
-    Animal* bobik = createDog();
-    Owner anton = createOwner();
-    House* antonFlat = createFlat();
+    House* flat = new Flat("Apples, 78", 44, "+79832178095", 0, true);
+    Animal* goldy = new Dog("Goldy", "m", 5);
 
     animals.push_back(vasya);
+    animals.push_back(mittens);
+    animals.push_back(goldy);
+    animals.push_back(kozel);
 
-    Residence res(house, artem);
-    Residence res1(antonFlat, anton);
-    Pet pet1(bobik, res1);
+    std::sort(animals.begin(), animals.end(), compareByName);
+    
+    std::cout << "\tAnimal sorted list\n";
+    for (auto animal : animals) {
+        std::cout << animal->getName() << std::endl;
+    }
+    std::cout << std::endl;
+
+    Residence res(house, sergey);
+    Residence res1(flat, vladimir);
+    Pet pet1(goldy, res1);
     Pet pet(vasya, res);
     push_pet(pet);
     push_pet(pet1);
@@ -99,9 +134,13 @@ int main() {
     showTable();
     std::cout << std::endl;
 
-    stringPrint(artem);
+    std::cout << searchByName();
+
+    stringPrint(sergey);
     stringPrint(*vasya);
 
-    delete bobik;
+    delete kozel;
+    delete mittens;
+    delete goldy;
     delete vasya;
 }
